@@ -4,14 +4,151 @@
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.9
                       http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.9.xsd"> 
-    <!--<changeSet author="authorName" id="changelog-1.0">
-        <createTable tableName="C_PRUEBA">
-            <column name="ID" type="INT">
-                <constraints nullable="true" primaryKey="false" unique="false"/>
+   
+    <changeSet author="Francisco Casales" id="20192802-1">
+        <createTable tableName="song">
+            <column name="song_id" type="int">
+                <constraints nullable="false" primaryKey="true" unique="true"/>
             </column>
-            <column name="DS_NAME" type="VARCHAR(50)">
-                <constraints nullable="true" primaryKey="false" unique="false"/>
+            <column name="song_duration_seconds" type="int">
+                <constraints nullable="false" primaryKey="false" unique="false"/>
+            </column>
+            <column name="genre_id" type="int">
+                <constraints nullable="false" primaryKey="false" unique="false"/>
+            </column>
+            <column name="song_date_of_release" type="date">
+                <constraints nullable="false" primaryKey="false" unique="false"/>
             </column>
         </createTable>
-    </changeSet>-->
+    </changeSet>
+
+    <changeSet author="Francisco Casales" id="20192802-2">
+        <createTable tableName="genre">
+            <column name="genre_id" type="int">
+                <constraints nullable="false" primaryKey="true" unique="true"/>
+            </column>
+            <column name="genre_name" type="varchar(20)">
+                <constraints nullable="false" primaryKey="false" unique="false"/>
+            </column>
+        </createTable>
+    <changeSet>
+
+    <changeSet author="Francisco Casales" id="20192802-3">
+        <createTable tableName="album">
+            <column name="album_id" type="int">
+                <constraints nullable="false" primaryKey="true" unique="true"/>
+            </column>
+            <column name="album_description" type="varchar(30)">
+                <constraints nullable="false" primaryKey="false" unique="false"/>
+            </column>
+            <column name="album_date_of_release" type="date">
+                <constraints nullable="false" primaryKey="false" unique="false"/>
+            </column>
+        </createTable>
+    <changeSet>
+
+    <changeSet author="Francisco Casales" id="20192802-4">
+        <createTable tableName="artist">
+            <column name="artist_id" type="int">
+                <constraints nullable="false" primaryKey="true" unique="true"/>
+            </column>
+            <column name="artist_name" type="varchar(30)">
+                <constraints nullable="false" primaryKey="false" unique="false"/>
+            </column>
+            <column name="artist_nationality" type="varchar(20)">
+                <constraints nullable="false" primaryKey="false" unique="false"/>
+            </column>
+        </createTable>
+    <changeSet>
+
+    <changeSet author="Francisco Casales" id="20192802-5">
+        <createTable tableName="album_song">
+            <column name="album_song_id" type="int">
+                <constraints nullable="false" primaryKey="false" unique="false"/>
+            </column>
+            <column name="album_id" type="int">
+                <constraints nullable="false" primaryKey="false" unique="false"/>
+            </column>
+            <column name="song_id" type="int">
+                <constraints nullable="false" primaryKey="false" unique="false"/>
+            </column>
+        </createTable>
+    <changeSet>
+
+    <changeSet author="Francisco Casales" id="20192802-6">
+        <createTable tableName="artist_song">
+            <column name="artist_song_id" type="int">
+                <constraints nullable="false" primaryKey="false" unique="false"/>
+            </column>
+            <column name="artist_id" type="int">
+                <constraints nullable="false" primaryKey="false" unique="false"/>
+            </column>
+            <column name="song_id" type="int">
+                <constraints nullable="false" primaryKey="false" unique="false"/>
+            </column>
+        </createTable>
+    <changeSet>
+
+    <changeSet author="Francisco Casales" id="20192802-7">
+    <addForeignKeyConstraint baseColumnNames="genre_id"
+            baseTableName="song"
+            constraintName="fk_song_genre"
+            onDelete="CASCADE"
+            onUpdate="RESTRICT"
+            referencedColumnNames="genre_id"
+            referencedTableName="genre"/>
+    </changeSet>
+
+    <changeSet author="Francisco Casales" id="20192802-8">
+    <addForeignKeyConstraint baseColumnNames="song_id"
+            baseTableName="album_song"
+            constraintName="fk_album_song_song"
+            onDelete="CASCADE"
+            onUpdate="RESTRICT"
+            referencedColumnNames="song_id"
+            referencedTableName="song"/>
+    </changeSet>
+
+    <changeSet author="Francisco Casales" id="20192802-9">
+    <addForeignKeyConstraint baseColumnNames="album_id"
+            baseTableName="album_song"
+            constraintName="fk_album_song_album"
+            onDelete="CASCADE"
+            onUpdate="RESTRICT"
+            referencedColumnNames="album_id"
+            referencedTableName="album"/>
+    </changeSet>
+
+    <changeSet author="Francisco Casales" id="20192802-10">
+    <addForeignKeyConstraint baseColumnNames="song_id"
+            baseTableName="artist_song"
+            constraintName="fk_artist_song_song"
+            onDelete="CASCADE"
+            onUpdate="RESTRICT"
+            referencedColumnNames="song_id"
+            referencedTableName="song"/>
+    </changeSet>
+
+    <changeSet author="Francisco Casales" id="20192802-11">
+    <addForeignKeyConstraint baseColumnNames="artist_id"
+            baseTableName="artist_song"
+            constraintName="fk_artist_song_artist"
+            onDelete="CASCADE"
+            onUpdate="RESTRICT"
+            referencedColumnNames="artist_id"
+            referencedTableName="artist"/>
+    </changeSet>
+
+    <changeSet author="Francisco Casales" id="20192802-12">
+    <addPrimaryKey columnNames="artist_id, song_id"
+            constraintName="pk_artist_song"
+            tableName="artist_song"/>
+    </changeSet>
+
+    <changeSet author="Francisco Casales" id="20192802-13">
+    <addPrimaryKey columnNames="album_id, song_id"
+            constraintName="pk_album_song"
+            tableName="album_song"/>
+    </changeSet>
+
 </databaseChangeLog> 
