@@ -31,7 +31,7 @@
                 <constraints nullable="false" primaryKey="false" unique="false"/>
             </column>
         </createTable>
-    <changeSet>
+    </changeSet>
 
     <changeSet author="Francisco Casales" id="20192802-3">
         <createTable tableName="album">
@@ -45,7 +45,7 @@
                 <constraints nullable="false" primaryKey="false" unique="false"/>
             </column>
         </createTable>
-    <changeSet>
+    </changeSet>
 
     <changeSet author="Francisco Casales" id="20192802-4">
         <createTable tableName="artist">
@@ -59,7 +59,7 @@
                 <constraints nullable="false" primaryKey="false" unique="false"/>
             </column>
         </createTable>
-    <changeSet>
+    </changeSet>
 
     <changeSet author="Francisco Casales" id="20192802-5">
         <createTable tableName="album_song">
@@ -73,7 +73,7 @@
                 <constraints nullable="false" primaryKey="false" unique="false"/>
             </column>
         </createTable>
-    <changeSet>
+    </changeSet>
 
     <changeSet author="Francisco Casales" id="20192802-6">
         <createTable tableName="artist_song">
@@ -87,7 +87,7 @@
                 <constraints nullable="false" primaryKey="false" unique="false"/>
             </column>
         </createTable>
-    <changeSet>
+    </changeSet>
 
     <changeSet author="Francisco Casales" id="20192802-7">
     <addForeignKeyConstraint baseColumnNames="genre_id"
